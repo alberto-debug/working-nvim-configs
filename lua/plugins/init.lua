@@ -1,28 +1,50 @@
-return {
+
+local plugins = {
   {
     "stevearc/conform.nvim",
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require "configs.conform",
+    -- event = "BufWritePre", -- uncomment if you want format-on-save
+    opts = require("configs.conform"),
   },
 
-  -- These are some examples, uncomment them if you want to see them work!
   {
-    "neovim/nvim-lspconfig",
+    "williamboman/mason.nvim",
     config = function()
-      require "configs.lspconfig"
+      require("mason").setup()
     end,
   },
 
-  -- test new blink
-  -- { import = "nvchad.blink.lazyspec" },
+  {
+    "williamboman/mason-lspconfig.nvim",
+    config = function()
+      require("mason-lspconfig").setup({
+        ensure_installed = {
+          "pyright",
+          "ts_ls",       -- updated from 'tsserver'
+          "jdtls",
+          "gopls",
+          "rust_analyzer",
+        },
+        automatic_installation = true,
+      })
+    end,
+  },
 
-  -- {
-  -- 	"nvim-treesitter/nvim-treesitter",
-  -- 	opts = {
-  -- 		ensure_installed = {
-  -- 			"vim", "lua", "vimdoc",
-  --      "html", "css"
-  -- 		},
-  -- 	},
-  -- },
+  {
+    "neovim/nvim-lspconfig",
+    config = function()
+      require("configs.lspconfig")
+    end,
+  },
+
+  {
+    import = "plugins.noice",
+  },
+
+--Keys
+  {
+-- Add this to your init.lua or a relevant configuration file
+vim.api.nvim_set_keymap("n", "<leader>cf", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
+  },
 }
+
+return plugins
