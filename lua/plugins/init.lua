@@ -2,7 +2,7 @@
 local plugins = {
   {
     "stevearc/conform.nvim",
-    -- event = "BufWritePre", -- uncomment if you want format-on-save
+    event = "BufWritePre", -- uncomment if you want format-on-save
     opts = require("configs.conform"),
   },
 
@@ -38,12 +38,13 @@ local plugins = {
 
   {
     import = "plugins.noice",
+    import = "plugins.lazygit",
   },
 
 --Keys
   {
 -- Add this to your init.lua or a relevant configuration file
-vim.api.nvim_set_keymap("n", "<leader>cf", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>cf", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true }),
   },
 }
 
