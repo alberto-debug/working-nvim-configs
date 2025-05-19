@@ -1,16 +1,13 @@
--- lua/plugins/lazygit.lua
-return {
-  {
-    "kdheepak/lazygit.nvim",
-    dependencies = {
-      "nvim-lua/plenary.nvim",
-    },
-    config = function()
-      -- Keymap to open lazygit
-      vim.api.nvim_set_keymap("n", "<leader>lg", ":LazyGit<CR>", { noremap = true, silent = true })
 
-      -- Keymap to open lazygit in a floating window
-      vim.api.nvim_set_keymap("n", "<leader>lG", ":LazyGitFloat<CR>", { noremap = true, silent = true })
-    end,
+return {
+  "kdheepak/lazygit.nvim",
+  cmd = "LazyGit",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
   },
+  config = function()
+    -- Optional: You can set LazyGit settings here directly if needed
+    vim.g.lazygit_floating_window_winblend = 0
+    vim.g.lazygit_floating_window_scaling_factor = 0.9
+  end,
 }

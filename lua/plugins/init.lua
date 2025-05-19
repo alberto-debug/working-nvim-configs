@@ -36,16 +36,13 @@ local plugins = {
     end,
   },
 
-  {
-    import = "plugins.noice",
-    import = "plugins.lazygit",
-  },
-
---Keys
-  {
--- Add this to your init.lua or a relevant configuration file
-vim.api.nvim_set_keymap("n", "<leader>cf", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true }),
-  },
+  -- Plugin imports
+  { import = "plugins.noice" },
+  { import = "plugins.lazygit" },
 }
+
+-- Key mappings
+vim.api.nvim_set_keymap("n", "<leader>cf", ":lua vim.lsp.buf.code_action()<CR>", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<leader>gg", ":LazyGit<CR>", { noremap = true, silent = true })
 
 return plugins
